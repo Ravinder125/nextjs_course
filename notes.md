@@ -102,3 +102,15 @@ my-next-app/
 - `public/`: Static assets
 - `next.config.js`: Next.js configuration
 - `package.json`: Project dependencies and scripts
+
+
+What to name file under folder like about, services etc?
+
+1. Only creating folder won't create a route for about.
+2. We can name service, about etc page in about or in other folder 
+3. Only page name is valid here.
+4. extension like .js/jsx what to use? Actually we can use both here but file name cannot in Sentence case like "Page.js"/"page.jsx" but inside the file you can name same here the function to export default Senctenc case like "Page"/"page"
+5. What is better for name 
+    file name - page.jsx
+    function name- Page
+6. Same for layout file
