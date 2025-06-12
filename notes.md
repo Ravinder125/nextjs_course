@@ -148,3 +148,43 @@ app/
 - Import global CSS **once** in the root layout, not in nested/group layouts.
 
 ---
+
+
+
+## Using CSS Modules in Next.js
+
+Next.js supports [CSS Modules](https://nextjs.org/docs/pages/building-your-application/styling/css-modules) for component-scoped styles. CSS Modules help avoid style conflicts by generating unique class names.
+
+**How to use:**
+
+1. Create a CSS file with the `.module.css` extension (e.g., `Button.module.css`).
+2. Import the module in your component.
+3. Apply styles using the imported object.
+
+**Example:**
+
+```css
+/* Service.module.css */
+.primary {
+    background: #0070f3;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+```
+
+```jsx
+// Service.jsx
+import styles from './Service.module.css';
+
+export default function Service() {
+    return <service className={styles.primary}>Click me</service>;
+}
+```
+
+**Notes:**
+- CSS Modules work in both the `pages` and `app` directories.
+- Use regular `.css` files for global styles (imported in `app/layout.js` or `pages/_app.js`).
+- Only files named `*.module.css` are treated as CSS Modules.
+- Class names are locally scoped by default.
+

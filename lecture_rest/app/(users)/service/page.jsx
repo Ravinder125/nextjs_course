@@ -1,8 +1,8 @@
-import React from 'react'
+import styles from './Service.module.css'
 
 const Service = () => {
     return (
-        <div>Service</div>
+        <div className={styles.subheading}>Service</div>
     )
 }
 

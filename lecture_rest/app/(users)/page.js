@@ -3,7 +3,7 @@ import Navigation from '@/components/Navigation'
 export default function Home() {
   return (
     <>
-      <h1>Hello User Page</h1>
+      <h1 className='subheading'>Hello User Page</h1>
     </>
   );
 }
