@@ -1,9 +1,9 @@
 # Next.js Overview
 
-Next.js is a React framework created by Vercel in 2016 for building full-stack web applications. It extends React with features such as file-based routing, server-side rendering (SSR), static site generation (SSG), and built-in API routes.
+Next.js is a React framework by Vercel (2016) for building full-stack web applications. It extends React with features like file-based routing, server-side rendering (SSR), static site generation (SSG), and built-in API routes.
 
 **Summary:**  
-React powers the UI, while Next.js adds structure and tools for scalable, production-ready apps.
+React powers the UI; Next.js adds structure and tools for scalable, production-ready apps.
 
 ---
 
@@ -14,7 +14,7 @@ React powers the UI, while Next.js adds structure and tools for scalable, produc
 - **API Routes:** Create backend endpoints within your project.
 - **SEO Optimization:** Server rendering improves search engine visibility.
 - **Full-Stack Capabilities:** Integrate databases, authentication, file uploads, and more.
-- **Built-in Optimizations:** Includes image optimization, custom fonts, metadata, and preloading.
+- **Built-in Optimizations:** Image optimization, custom fonts, metadata, and preloading.
 
 ---
 
@@ -31,7 +31,7 @@ React powers the UI, while Next.js adds structure and tools for scalable, produc
 
 ## When to Use Next.js
 
-Next.js is ideal for projects needing SEO, high performance, or a mix of static and dynamic content—such as e-commerce, blogs, marketing sites, and scalable web apps.
+Ideal for projects needing SEO, high performance, or a mix of static and dynamic content—such as e-commerce, blogs, marketing sites, and scalable web apps.
 
 ---
 
@@ -74,15 +74,15 @@ Example folder structure for a Next.js project using the App Router:
 ```
 my-next-app/
 ├── app/
-│   ├── layout.js        Root layout
-│   ├── page.js          Homepage
+│   ├── layout.js        # Root layout
+│   ├── page.js          # Homepage
 │   ├── globals.css
 │   ├── about/
-│   │   ├── layout.js    About route layout
-│   │   └── page.js      About page
+│   │   ├── layout.js    # About route layout
+│   │   └── page.js      # About page
 │   ├── dashboard/
-│   │   ├── layout.js    Dashboard layout
-│   │   └── page.js      Dashboard page
+│   │   ├── layout.js    # Dashboard layout
+│   │   └── page.js      # Dashboard page
 │   └── api/
 │       └── hello/
 │           └── route.js
@@ -103,31 +103,48 @@ my-next-app/
 - `next.config.js`: Next.js configuration
 - `package.json`: Project dependencies and scripts
 
+---
 
-What to name file under folder like about, services etc?
+## Naming Files and Functions in App Router
 
-1. Only creating folder won't create a route for about.
-2. We can name service, about etc page in about or in other folder 
-3. Only page name is valid here.
-4. extension like .js/jsx what to use? Actually we can use both here but file name cannot in Sentence case like "Page.js"/"page.jsx" but inside the file you can name same here the function to export default Senctenc case like "Page"/"page"
-5. What is better for name 
-    file name - page.jsx
-    function name- Page
-6. Same for layout file
+- Creating a folder (e.g., `about/`) alone does **not** create a route. You must add a `page.js` or `page.jsx` file inside the folder.
+- Only `page` is a valid file name for route pages (e.g., `about/page.js`).
+- File extensions can be `.js`, `.jsx`, `.ts`, or `.tsx`.
+- File names must be lowercase (`page.js`, not `Page.js`).
+- The exported function inside the file can use PascalCase (`export default function Page() {}`).
+- **Recommended:**  
+    - File name: `page.jsx`  
+    - Function name: `Page`
+- The same applies to layout files:  
+    - File name: `layout.jsx`  
+    - Function name: `Layout`
 
+---
 
+## Route Groups
 
-What is Route Groups ?
-In Next.js App Router, Route Groups are a way to organize your routes without affecting the URL structure. This helps separate pages logically (like admin, user, auth, etc.) without showing these groups in the final route path.
+Route Groups in the Next.js App Router help organize routes without affecting the URL structure. Use them to separate pages logically (e.g., admin, user, auth) without exposing these groups in the final route path.
 
-Route Groups don't affect the final URL path.
+**Syntax Example:**
 
-Syntax:
-
+```
 app/
     (admin)/
         dashboard/
-            page.tsx -> /dashboard
+            page.tsx   # /dashboard
     (user)/
         profile/
-            page.tsx -> /profile        
+            page.tsx   # /profile
+```
+
+- Route Groups (folders in parentheses) do **not** appear in the URL.
+
+---
+
+## Layout Best Practices
+
+- Only the **root** layout (`app/layout.tsx`) should include `<html>` and `<body>` tags and import global CSS (e.g., `globals.css`).
+- **Nested** or **group** layouts (e.g., `about/layout.tsx`, `(users)/layout.tsx`) should **not** include `<html>` or `<body>`. They are for shared UI (like navigation) for specific routes or groups.
+- Import global CSS **once** in the root layout, not in nested/group layouts.
+
+---

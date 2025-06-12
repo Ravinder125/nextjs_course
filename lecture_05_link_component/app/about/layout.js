@@ -1,5 +1,5 @@
 
-export default function ServiceLayout({ children }) {
+export default function AboutLayout({ children }) {
     return (
         <html lang="en">
             <body>
