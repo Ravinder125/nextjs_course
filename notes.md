@@ -114,3 +114,20 @@ What to name file under folder like about, services etc?
     file name - page.jsx
     function name- Page
 6. Same for layout file
+
+
+
+What is Route Groups ?
+In Next.js App Router, Route Groups are a way to organize your routes without affecting the URL structure. This helps separate pages logically (like admin, user, auth, etc.) without showing these groups in the final route path.
+
+Route Groups don't affect the final URL path.
+
+Syntax:
+
+app/
+    (admin)/
+        dashboard/
+            page.tsx -> /dashboard
+    (user)/
+        profile/
+            page.tsx -> /profile        
