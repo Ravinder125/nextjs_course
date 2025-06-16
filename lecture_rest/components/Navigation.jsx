@@ -2,7 +2,7 @@ import Link from "next/link"
 
 
 const Navigation = () => {
-    return <header className="flex p-3 justify-around align-center ">
+    return <header className="font-poppins flex p-3 justify-around align-center ">
         <div className="text-3xl">
             logo
         </div>

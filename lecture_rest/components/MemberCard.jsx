@@ -5,7 +5,7 @@ import thapa from '../public/thapa.jpg'
 
 const MemberCard = ({ image }) => {
     return (
-        <div className='sm:col-span-2 col-span-4 lg:col-span-1 transform hover:scale-105 hover:cursor-pointer transition-all ease duration-300 shadow shadow-lg'>
+        <div className='font-work-sans sm:col-span-2 col-span-4 lg:col-span-1 transform hover:scale-105 hover:cursor-pointer transition-all ease duration-300 shadow shadow-lg'>
             <div className='bg-[#393E46] rounded-md overflow-hidden flex flex-col justify-center '>
                 <div>
                     <Image
