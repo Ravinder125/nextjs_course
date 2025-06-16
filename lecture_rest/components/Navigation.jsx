@@ -2,13 +2,13 @@ import Link from "next/link"
 
 
 const Navigation = () => {
-    return <header className="flex justify-around align-center ">
+    return <header className="flex p-3 justify-around align-center ">
         <div className="text-3xl">
             logo
         </div>
         <nav>
-            <ul className="flex gap-3 alert-danger *>hover:text-red-400">
-                <li>
+            <ul className="flex gap-5 alert-danger">
+                <li >
                     <Link href="/">Home</Link>
                 </li>
                 <li>
