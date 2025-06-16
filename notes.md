@@ -188,3 +188,16 @@ export default function Service() {
 - Only files named `*.module.css` are treated as CSS Modules.
 - Class names are locally scoped by default.
 
+
+
+What is a "Subset" ?
+
+
+A subset in fonts refers to a specific group of characters (glyphs) based on a language or script.
+For example: 
+
+Latin - includes basic English and Western European characters.
+Cyrillic - includes characters for Russian, Bulgarian, etc.
+Arabic - includes Arabic script.
+Greek, Hebrew, etc.
+
