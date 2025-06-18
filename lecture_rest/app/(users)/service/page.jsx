@@ -1,13 +1,24 @@
-'use client'
 import MemberCard from '@/components/MemberCard'
 import styles from './Service.module.css'
 import thapa from '@/public/thapa.jpg'
-import { useState } from 'react'
+
+// Customized metadata
+export const metadata = {
+    title: "Services",
+    description: "This is actually customized meta tag for Services page",
+    authors: [
+        { name: "Thapa Technical" },
+        { name: "Ravinder", url: "localhost:3000" },
+    ],
+    keywords: ["nextjs", "reactjs", "fullstack"],
+    icons: {
+        icon: "/images/kodyfier.png"
+    }
+
+}
 
 
 const Service = () => {
-    console.log(thapa?.src)
-    const [thapaImage, setThapaImage] = useState(thapa?.src)
     return (
         // <div className={styles.subheading}>Service</div>
         <div className='min-h-screen tacking-wider'>
@@ -18,15 +29,11 @@ const Service = () => {
                     </div>
 
                     <div className='grid grid-cols-8 sm:grid-cols-4  gap-8 mb-10'>
-                        <MemberCard image={thapaImage} />
-                        <MemberCard image={thapaImage} />
-                        <MemberCard image={thapaImage} />
-                        <MemberCard image={thapaImage} />
-                        <MemberCard image={thapaImage} />
-                        <MemberCard image={thapaImage} />
-                        <MemberCard image={thapaImage} />
-                        <MemberCard image={thapaImage} />
-                        <MemberCard image={thapaImage} />
+                        {
+                            [1, 2, 3, 4, 5, 6, 7, 8].map((_, idx) => (
+                                <MemberCard key={idx} image={thapa} />
+                            ))
+                        }
                     </div>
                 </div>
             </div>

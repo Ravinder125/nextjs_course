@@ -1,5 +1,4 @@
 import Image from "next/image"
-import thapa from '../public/thapa.jpg'
 
 
 
@@ -9,7 +8,7 @@ const MemberCard = ({ image }) => {
             <div className='bg-[#393E46] rounded-md overflow-hidden flex flex-col justify-center '>
                 <div>
                     <Image
-                        src={thapa}
+                        src={image}
                         width={500}
                         height={500}
                         quality={1}
