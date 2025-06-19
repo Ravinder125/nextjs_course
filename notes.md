@@ -272,3 +272,82 @@ A `<Page>` component (Server Component) fetches data about a post and passes it 
 - **Poor:** Greater than 4.0 seconds
 
 ---
+
+## Dynamic Routing
+
+Dynamic routing in Next.js allows you to create pages with variable path segments, making it easy to handle routes based on dynamic data (such as user IDs, blog slugs, etc.).
+
+### How It Works
+
+- **Dynamic Segments:**  
+    To define a dynamic route, wrap the segment name in square brackets in your file or folder name:  
+    - Example: `pages/blog/[slug].js` or `app/blog/[slug]/page.js`
+- **Multiple Dynamic Segments:**  
+    You can nest dynamic segments for more complex routes:  
+    - Example: `pages/users/[userId]/posts/[postId].js`
+- **Catch-All Routes:**  
+    Use `[...param]` for catch-all routes (matches multiple segments):  
+    - Example: `pages/docs/[...slug].js`
+
+### Accessing Route Parameters
+
+- **App Router:**  
+    - **useParams hook (Client Components only):**  
+        Use the `useParams` hook from `next/navigation` to access dynamic parameters in Client Components:
+        ```js
+        import { useParams } from 'next/navigation';
+
+        export default function BlogPost() {
+            const params = useParams();
+            // params.slug
+        }
+        ```
+        > **Note:** `useParams` cannot be used in Server Components.
+    - **Props in Server Components:**  
+        In Server Components (e.g., `app/blog/[slug]/page.js`), route parameters are available as props:
+        ```js
+        export default function BlogPost({ params }) {
+            // params.slug
+        }
+        ```
+- **Pages Router:**  
+    - **useRouter hook:**  
+        Access parameters via `useRouter`:
+        ```js
+        import { useRouter } from 'next/router';
+
+        export default function BlogPost() {
+            const router = useRouter();
+            // router.query.slug
+        }
+        ```
+    - **Props in Data Fetching Methods:**  
+        Access parameters in `getServerSideProps` or `getStaticProps`:
+        ```js
+        export async function getStaticProps({ params }) {
+            // params.slug
+            return { props: { ... } };
+        }
+        ```
+
+### Example Structure
+
+```
+app/
+    blog/
+        [slug]/
+            page.js   # Handles /blog/my-first-post, /blog/another-post, etc.
+```
+
+### Use Cases
+
+- Blog posts (`/blog/[slug]`)
+- User profiles (`/users/[userId]`)
+- Product pages (`/products/[productId]`)
+
+### Notes
+
+- Dynamic routes can be statically generated (SSG) or server-side rendered (SSR).
+- Use `getStaticPaths` (Pages Router) or `generateStaticParams` (App Router) to pre-render dynamic routes at build time.
+
+[Next.js Dynamic Routes Documentation](https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes)
