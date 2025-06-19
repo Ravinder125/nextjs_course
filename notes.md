@@ -1,9 +1,31 @@
-# Next.js Overview
+# Next.js Notes
 
-Next.js is a React framework by Vercel (2016) for building full-stack web applications. It extends React with features like file-based routing, server-side rendering (SSR), static site generation (SSG), and built-in API routes.
+A concise guide to Next.js, the React framework for building full-stack web applications.
 
-**Summary:**  
-React powers the UI; Next.js adds structure and tools for scalable, production-ready apps.
+---
+
+## Table of Contents
+
+1. [Overview](#overview)
+2. [Key Features](#key-features)
+3. [Companies Using Next.js](#companies-using-nextjs)
+4. [When to Use Next.js](#when-to-use-nextjs)
+5. [Prerequisites](#prerequisites)
+6. [Getting Started](#getting-started)
+7. [Common Commands](#common-commands)
+8. [Project Structure](#project-structure)
+9. [Naming Conventions](#naming-conventions)
+10. [Route Groups](#route-groups)
+11. [Layout Best Practices](#layout-best-practices)
+12. [CSS Modules](#css-modules)
+13. [Font Subsets](#font-subsets)
+14. [Server and Client Components](#server-and-client-components)
+
+---
+
+## Overview
+
+Next.js is a React framework by Vercel (2016) for building scalable, production-ready web applications. It extends React with features like file-based routing, server-side rendering (SSR), static site generation (SSG), and built-in API routes.
 
 ---
 
@@ -61,13 +83,7 @@ npx create-next-app@latest
 
 ---
 
-## Layout File in Next.js
-
-In the App Router, `layout.js` (or `layout.tsx`) wraps pages/components with shared UI (headers, footers, navigation), ensuring consistency across routes.
-
----
-
-## Typical File Structure (App Router)
+## Project Structure
 
 Example folder structure for a Next.js project using the App Router:
 
@@ -105,7 +121,7 @@ my-next-app/
 
 ---
 
-## Naming Files and Functions in App Router
+## Naming Conventions
 
 - Creating a folder (e.g., `about/`) alone does **not** create a route. You must add a `page.js` or `page.jsx` file inside the folder.
 - Only `page` is a valid file name for route pages (e.g., `about/page.js`).
@@ -149,9 +165,7 @@ app/
 
 ---
 
-
-
-## Using CSS Modules in Next.js
+## CSS Modules
 
 Next.js supports [CSS Modules](https://nextjs.org/docs/pages/building-your-application/styling/css-modules) for component-scoped styles. CSS Modules help avoid style conflicts by generating unique class names.
 
@@ -188,16 +202,73 @@ export default function Service() {
 - Only files named `*.module.css` are treated as CSS Modules.
 - Class names are locally scoped by default.
 
+---
+
+## Font Subsets
+
+A **subset** in fonts refers to a specific group of characters (glyphs) based on a language or script.
+
+- **Latin:** Basic English and Western European characters.
+- **Cyrillic:** Characters for Russian, Bulgarian, etc.
+- **Arabic:** Arabic script.
+- **Greek, Hebrew, etc.:** Other language-specific subsets.
+
+---
+
+## Server and Client Components
+
+By default, layouts and pages are **Server Components**, which let you fetch data and render parts of your UI on the server, optionally cache the result, and stream it to the client. When you need interactivity or browser APIs, use **Client Components** to layer in functionality.
+
+**Summary:**
+- All files in the `app` folder are Server Components by default.
+- Server and Client components allow you to run logic in each environment depending on your use case.
+
+**Use Client Components when you need:**
+- State and event handlers (e.g., `onClick`, `onChange`)
+- Lifecycle logic (e.g., `useEffect`)
+- Browser-only APIs (e.g., `localStorage`, `window`)
+- Custom hooks
+
+**Use Server Components when you need:**
+- Fetch data from databases or APIs close to the source
+- Use API keys, tokens, and other secrets without exposing them to the client
+- Reduce the amount of JavaScript sent to the browser
+- Improve First Contentful Paint (FCP) and stream content progressively
+
+**Notes:**
+1. Inside a Server Component, you can use both Server or Client Components.
+2. Inside a Client Component, all child components are Client Components by default.
+3. Server Components are rendered on the server and sent to the browser.
+4. Client Components are rendered on both the server and the client (like traditional React components).
+
+**Example:**  
+A `<Page>` component (Server Component) fetches data about a post and passes it as props to a `<LikeButton>` (Client Component) that handles client-side interactivity
 
 
-What is a "Subset" ?
+## Performance Optimization
 
+### First Contentful Paint (FCP)
 
-A subset in fonts refers to a specific group of characters (glyphs) based on a language or script.
-For example: 
+**First Contentful Paint (FCP)** measures the time from when a user navigates to a page until any part of the page's content is rendered on the screen. "Content" includes text, images (including background images), `<svg>` elements, or non-white `<canvas>` elements.
 
-Latin - includes basic English and Western European characters.
-Cyrillic - includes characters for Russian, Bulgarian, etc.
-Arabic - includes Arabic script.
-Greek, Hebrew, etc.
+- **Why it matters:** FCP is a key user-centric metric for measuring perceived load speed.
+- [Learn more about FCP](https://web.dev/articles/fcp)
 
+---
+
+### Largest Contentful Paint (LCP)
+
+**Largest Contentful Paint (LCP)** measures how long it takes for the largest visible element (such as a large text block, image, or video) to load and become visible within the viewport.
+
+- **Why it matters:** LCP focuses on the main content of the page, reflecting when the page appears fully loaded to users.
+- **Note:** LCP is different from FCP. While FCP measures when the first element is rendered, LCP measures when the largest element is visible.
+
+-**Note:** LCP doesn't stop counting until the largest image or element is seen on-screen.
+
+#### LCP Scoring
+
+- **Good:** 0 to 2.5 seconds
+- **Needs Improvement:** 2.6 to 4.0 seconds
+- **Poor:** Greater than 4.0 seconds
+
+---
