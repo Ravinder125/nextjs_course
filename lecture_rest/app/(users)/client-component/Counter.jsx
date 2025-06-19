@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 
-// Note: Event Listeners can be used here because it's parrent component is client-component which is client component
+// Note: Event Listeners can be used here because it's parent component is client-component which is client component
 
 const Counter = () => {
     const [inc, setInc] = useState(0);
