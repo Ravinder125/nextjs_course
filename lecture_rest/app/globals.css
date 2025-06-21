@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+body {
+    background: #3c3c3c;
+    color: white;
+}
+
+@theme inline {
+    --font-poppins: var(--font-poppins);
+    --font-work-sans: var(--font-work-sans);
+}
+
+/* Then go use variable where you want to like this : className="font-poppins" */
+
+
+
+.subheading {
+    color: aqua;
+}
