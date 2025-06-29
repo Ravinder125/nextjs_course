@@ -467,3 +467,93 @@ export default Products = async ({ searchParams }) => {
 
 > `searchParams` makes it easy to build dynamic, user-friendly interfaces that respond to changes in the URL.
 
+
+
+## Catch-all Segments
+
+Catch-all segments in Next.js let you match and handle routes with an arbitrary number of nested path segments, making it easy to build flexible, deeply nested URL structures without manually defining every possible route.
+
+### Syntax
+
+- Use `[...param]` for catch-all routes (matches zero or more segments).
+- Use `[[...param]]` for optional catch-all routes (matches zero or more segments, including none).
+
+### Example: Blog with Nested Categories
+
+Suppose you want to support URLs like:
+
+- `/blog`
+- `/blog/technology`
+- `/blog/technology/javascript`
+- `/blog/technology/javascript/es6`
+
+Instead of creating separate files for each level, use a catch-all segment:
+
+```
+app/
+    blog/
+        [...slug]/
+            page.js
+```
+
+**Accessing the segments:**
+
+```js
+// app/blog/[...slug]/page.js
+
+export default function BlogCategoryPage({ params }) {
+    const { slug } = params; // slug is an array of segments or undefined
+    return (
+        <div>
+            <h1>Blog Category</h1>
+            <p>Segments: {slug ? slug.join(' / ') : 'Home'}</p>
+        </div>
+    );
+}
+```
+
+**How it works:**
+
+- `/blog` → `slug` is `undefined`
+- `/blog/technology` → `slug` is `['technology']`
+- `/blog/technology/javascript` → `slug` is `['technology', 'javascript']`
+
+### Example: E-commerce Product Catalog
+
+Support deeply nested categories:
+
+- `/shop`
+- `/shop/clothing`
+- `/shop/clothing/men`
+- `/shop/clothing/men/shirts`
+
+**File structure:**
+
+```
+app/
+    shop/
+        [...slug]/
+            page.js
+```
+
+**Component example:**
+
+```js
+// app/shop/[...slug]/page.js
+
+export default function ShopCategoryPage({ params }) {
+    const { slug } = params;
+    return (
+        <div>
+            <h1>Shop Category</h1>
+            <p>Path: /shop/{slug ? slug.join('/') : ''}</p>
+        </div>
+    );
+}
+```
+
+### Notes
+
+- Catch-all segments are arrays of strings representing each matched segment.
+- Use them for blogs, docs, product catalogs, or any deeply nested content.
+- For optional catch-all, use `[[...slug]]` to match `/blog` as well as `/blog/anything`.
