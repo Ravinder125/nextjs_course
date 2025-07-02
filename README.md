@@ -557,3 +557,23 @@ export default function ShopCategoryPage({ params }) {
 - Catch-all segments are arrays of strings representing each matched segment.
 - Use them for blogs, docs, product catalogs, or any deeply nested content.
 - For optional catch-all, use `[[...slug]]` to match `/blog` as well as `/blog/anything`.
+
+
+## Loading 
+### Loading in Server Components
+- We can use the `loading.js` or `loading.jsx` file to show a loading state while the data is being fetched in Server Components.
+
+**Example:**
+
+Suppose you have a route at `app/products/page.js`. To show a loading indicator while the page is loading, add a `loading.js` file in the same folder:
+
+```js
+// app/products/loading.js
+
+export default function Loading() {
+    return <div>Loading products...</div>;
+}
+```
+
+When users navigate to `/products`, Next.js will automatically display the `Loading` component while the data for `page.js` is being fetched.
+

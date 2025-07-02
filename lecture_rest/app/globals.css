@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 body {
-    background: #3c3c3c;
-    color: white;
+    background: rgba(0, 0, 0, 0.925);
+    color: rgba(255, 255, 255, 0.938);
 }
 
 @theme inline {
