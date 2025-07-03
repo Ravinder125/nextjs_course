@@ -577,3 +577,40 @@ export default function Loading() {
 
 When users navigate to `/products`, Next.js will automatically display the `Loading` component while the data for `page.js` is being fetched.
 
+
+## Suspense in Next.js
+
+React's `Suspense` component lets you declaratively specify loading states for parts of your UI while data or code is being loaded. In Next.js (App Router), `Suspense` is used to wrap Client Components or parts of the UI that fetch data asynchronously, providing a fallback UI until the content is ready.
+
+### Basic Usage
+
+```jsx
+import { Suspense } from 'react';
+import Comments from './Comments';
+
+export default function PostPage() {
+    return (
+        <div>
+            <h1>Post</h1>
+            <Suspense fallback={<div>Loading comments...</div>}>
+                <Comments />
+            </Suspense>
+        </div>
+    );
+}
+```
+
+- The `fallback` prop defines what to show while `Comments` is loading.
+
+### Use Cases
+
+- Show loading spinners or skeletons for slow-loading components.
+- Defer loading of non-critical UI (e.g., comments, recommendations).
+- Split large pages into smaller, independently loading sections.
+
+### Notes
+
+- `Suspense` works with Client Components and async Server Components.
+- For route-level loading, prefer `loading.js` files.
+- You can nest multiple `Suspense` boundaries for granular loading states.
+
